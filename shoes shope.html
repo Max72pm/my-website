@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Stride House | Footwear atelier</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;800&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#06080F;--ink:#F3EFE8;--mut:#9AA0B3;--acc:#FF5A1F;--line:rgba(255,255,255,.15);color-scheme:dark;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.65 "Manrope",system-ui,sans-serif;overflow-x:hidden}
+h1,h2,h3{font-family:"Syne","Manrope",system-ui,sans-serif;margin:0;line-height:1;letter-spacing:-.035em;font-weight:800}
+a{color:inherit;text-decoration:none}:focus-visible{outline:3px solid var(--acc);outline-offset:3px}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:90;opacity:.08;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+#stage{position:fixed;inset:0;z-index:0;background:radial-gradient(55% 45% at 50% 58%,#18224f 0,transparent 72%),radial-gradient(35% 35% at 85% 12%,#3b1608 0,transparent 70%),radial-gradient(35% 40% at 5% 90%,#0f1b45 0,transparent 70%)}
+#word{position:fixed;inset:0;z-index:0;display:grid;place-items:center;text-align:center;font-size:clamp(70px,21vw,330px);line-height:.82;color:rgba(255,255,255,.035);-webkit-text-stroke:1.5px rgba(255,255,255,.22);will-change:transform,opacity;pointer-events:none}
+#word span{display:inline-block;transform:translateY(110%);opacity:0;transition:transform 1.4s cubic-bezier(.16,1,.3,1),opacity 1.4s}
+.go #word span{transform:none;opacity:1;transition-delay:calc(1.1s + var(--i)*.07s)}
+#gl{position:fixed;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
+.vig{position:fixed;inset:0;z-index:2;pointer-events:none;background:radial-gradient(ellipse at center,transparent 45%,rgba(0,0,0,.6) 100%)}
+.bar{position:fixed;left:0;right:0;height:51vh;background:#000;z-index:100;transition:transform 1.5s cubic-bezier(.77,0,.18,1) .2s}
+.bar.t{top:0}.bar.b{bottom:0}.go .t{transform:translateY(-101%)}.go .b{transform:translateY(101%)}
+#ld{position:fixed;inset:0;z-index:101;display:grid;place-items:center;font:800 clamp(28px,5vw,56px) "Syne",sans-serif;letter-spacing:-.03em;transition:opacity .6s;pointer-events:none}
+#ld small{display:block;text-align:center;font:500 14px "Manrope",sans-serif;color:var(--mut);margin-top:10px;letter-spacing:0}.go #ld{opacity:0}
+#bar{position:fixed;top:0;left:0;height:3px;width:0;background:var(--acc);z-index:95}
+#cur{position:fixed;left:0;top:0;width:38px;height:38px;margin:-19px 0 0 -19px;border:1.5px solid #fff;border-radius:50%;z-index:96;pointer-events:none;mix-blend-mode:difference;transition:width .25s,height .25s,margin .25s,background .25s;display:none}
+#cur.h{width:76px;height:76px;margin:-38px 0 0 -38px;background:#fff}@media (pointer:fine){#cur{display:block}}
+nav{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;z-index:50}
+nav .in{max-width:1280px;margin:0 auto;padding:22px 28px;display:flex;justify-content:space-between;align-items:center}
+.logo{font:800 22px "Syne",sans-serif;letter-spacing:-.04em}.logo i{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--acc);margin-left:3px}
+nav ul{display:flex;gap:34px;list-style:none;margin:0;padding:0;font-size:15px;font-weight:500;color:var(--mut)}nav ul a:hover{color:var(--ink)}
+.btn{display:inline-block;padding:15px 28px;border-radius:999px;background:var(--ink);color:#06080F;border:0;cursor:pointer;font:700 15px "Manrope",sans-serif;transition:background .25s,color .25s,transform .12s}
+.btn:hover{background:var(--acc);color:#fff}.btn.g{background:transparent;color:var(--ink);border:1.5px solid var(--line)}.btn.g:hover{border-color:var(--ink);background:transparent;color:var(--ink)}
+main{position:relative;z-index:5}
+.sc{min-height:140vh;display:flex;align-items:center;padding:110px 0}
+.wrap{width:100%;max-width:1280px;margin:0 auto;padding:0 28px}
+.col{max-width:480px}.col.r{margin-left:auto}
+.hero{min-height:112vh;align-items:flex-end;padding-bottom:70px}
+.hero .wrap{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap}
+.hero p{max-width:390px;color:var(--mut);margin:0 0 24px}.cta{display:flex;gap:12px;flex-wrap:wrap}
+.scr{display:flex;align-items:center;gap:14px;color:var(--mut);font-size:14px}.scr i{display:block;width:1px;height:64px;background:var(--line);position:relative;overflow:hidden}
+.scr i::after{content:"";position:absolute;left:0;top:-30px;width:1px;height:30px;background:var(--acc);animation:dr 2s ease-in-out infinite}@keyframes dr{to{top:64px}}
+h2{font-size:clamp(38px,5.2vw,76px)}
+.w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.08em}.w>span{display:inline-block;transform:translateY(105%);transition:transform 1s cubic-bezier(.16,1,.3,1);transition-delay:calc(var(--i)*.06s)}.on .w>span{transform:none}
+.fade{opacity:0;transform:translateY(30px);transition:opacity 1s .35s,transform 1s .35s cubic-bezier(.16,1,.3,1)}.on .fade{opacity:1;transform:none}
+.col p{color:var(--mut);margin:22px 0 0}
+/* about: pinned, shoe fixed behind and rotating with scroll */
+.about{height:360vh;position:relative}
+.pin{position:sticky;top:0;height:100vh;display:flex;align-items:center}
+.pin h2{text-shadow:0 4px 30px rgba(0,0,0,.6)}
+.steps{position:relative;height:250px;margin-top:30px}
+.step{position:absolute;inset:0 0 auto 0;opacity:0;will-change:opacity,transform}
+.step h3{font-size:clamp(24px,2.6vw,34px)}.step p{margin:14px 0 0;color:#C3C8D8;text-shadow:0 2px 20px rgba(0,0,0,.8)}
+.now{position:absolute;left:0;right:0;bottom:calc(34px + env(safe-area-inset-bottom,0px))}
+.now .wrap{display:flex;justify-content:flex-end}
+.nbox{display:flex;align-items:center;gap:20px;flex-wrap:wrap;padding:16px 20px;border:1px solid var(--line);border-radius:22px;background:rgba(8,11,22,.6);backdrop-filter:blur(16px)}
+.nbox small{display:block;color:var(--mut);font-size:13px;line-height:1.3}.nbox b{font:800 20px "Syne",sans-serif;letter-spacing:-.02em}
+.nbox .pr{font:800 26px "Syne",sans-serif;letter-spacing:-.03em;color:var(--acc)}
+.arr{width:42px;height:42px;border-radius:50%;border:1.5px solid var(--line);background:none;color:var(--ink);font-size:20px;cursor:pointer;transition:background .2s,border-color .2s}.arr:hover{background:var(--acc);border-color:var(--acc)}
+#cw{display:flex;gap:8px}#cw button{width:26px;height:26px;border-radius:50%;border:2px solid rgba(255,255,255,.3);cursor:pointer;padding:0;transition:transform .15s}
+#cw button[aria-pressed=true]{border-color:#fff;transform:scale(1.18)}
+.spec{list-style:none;margin:36px 0 0;padding:0}.spec li{padding:18px 0;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:20px}
+.spec li:last-child{border-bottom:1px solid var(--line)}.spec b{font-weight:700}.spec span{color:var(--mut);text-align:right;font-size:15px}
+/* catalogue */
+.cat{padding:120px 0 140px}
+.cat .lead{color:var(--mut);margin:16px 0 0}
+.filters{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:34px 0 10px}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{padding:10px 18px;border-radius:999px;border:1.5px solid var(--line);background:none;color:var(--mut);font:500 14px "Manrope",sans-serif;cursor:pointer;transition:all .2s}
+.chip:hover{color:var(--ink);border-color:var(--ink)}.chip[aria-pressed=true]{background:var(--ink);color:#06080F;border-color:var(--ink)}
+select{padding:10px 16px;border-radius:999px;border:1.5px solid var(--line);background:rgba(8,11,22,.7);color:var(--ink);font:500 14px "Manrope",sans-serif;cursor:pointer}
+#count{margin-left:auto;color:var(--mut);font-size:14px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:20px}
+.pc{display:block;border:1px solid var(--line);border-radius:26px;padding:12px 16px 22px;transition:border-color .25s}
+.pc:hover,.pc:focus-visible{border-color:var(--acc)}
+.slot{aspect-ratio:1.3}
+.pc small{color:var(--mut);font-size:13.5px}.pc h3{font-size:24px;margin-top:4px}
+.row{display:flex;justify-content:space-between;align-items:center;margin-top:14px;gap:12px}
+.row span{display:flex;align-items:center;gap:9px;color:var(--mut);font-size:14px}.row i{width:16px;height:16px;border-radius:50%;border:2px solid rgba(255,255,255,.4)}
+.row b{font:800 22px "Syne",sans-serif;letter-spacing:-.03em;color:var(--acc)}
+.empty{grid-column:1/-1;padding:60px 0;color:var(--mut)}
+.nogl .slot::after{content:"3D preview needs WebGL";display:grid;place-items:center;height:100%;color:var(--mut);font-size:14px}
+.visit{min-height:110vh;align-items:flex-end}.visit .wrap{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:end}
+.card{border:1px solid var(--line);border-radius:28px;padding:34px;background:rgba(10,14,28,.62);backdrop-filter:blur(18px)}
+.card dl{margin:0 0 22px;display:grid;grid-template-columns:auto 1fr;gap:10px 26px}.card dt{color:var(--mut)}.card dd{margin:0;font-weight:500}
+form{display:grid;gap:12px}
+input{width:100%;padding:15px 18px;border-radius:14px;border:1.5px solid var(--line);background:rgba(255,255,255,.04);color:var(--ink);font:inherit}input:focus{border-color:var(--acc);outline:none}
+#ok{margin:0;min-height:1.4em;color:var(--acc);font-weight:500}
+footer{position:relative;z-index:5;padding:28px;color:var(--mut);font-size:14px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;border-top:1px solid var(--line);background:rgba(6,8,15,.8)}
+@media (max-width:1000px){.grid{grid-template-columns:1fr 1fr}}
+@media (max-width:900px){nav ul{display:none}.sc{align-items:flex-end;min-height:130vh;padding:90px 0 60px}.col.r{margin-left:0}
+.pin{align-items:flex-start;padding-top:90px}.steps{height:220px}.now .wrap{justify-content:center}.nbox{gap:12px;padding:12px 14px}
+.visit .wrap{grid-template-columns:1fr}.hero .wrap{display:block}.scr{display:none}.card{padding:26px}#count{margin-left:0;width:100%}}
+@media (max-width:560px){.grid{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}#word span,.w>span,.fade{transform:none!important;opacity:1!important}}
+</style>
+</head>
+<body>
+<div id="stage"></div>
+<h1 id="word" aria-label="Stride House"></h1>
+<canvas id="gl"></canvas><div class="vig"></div>
+<div class="bar t"></div><div class="bar b"></div>
+<div id="ld"><div>Stride House<small id="pc">0%</small></div></div>
+<div id="bar"></div><div id="cur"></div>
+<nav><div class="in"><a class="logo" href="#top" aria-label="Stride House home">Stride House<i></i></a>
+<ul><li><a href="#about">About</a></li><li><a href="#shop">Collection</a></li><li><a href="#visit">Visit</a></li></ul>
+<a class="btn g" href="#visit">Book a fitting</a></div></nav>
+
+<main id="top">
+<section class="sc hero"><div class="wrap">
+<div><p>Twenty pairs from fourteen makers: sneakers, runners, boots, brogues and loafers, fitted by hand in our family shop.</p>
+<div class="cta"><a class="btn" href="#shop">Explore the collection</a><a class="btn g" href="#visit">Visit the store</a></div></div>
+<div class="scr"><i></i>Scroll to explore</div></div></section>
+
+<section class="about" id="about"><div class="pin"><div class="wrap"><div class="col">
+<h2 data-split>About Stride House.</h2>
+<div class="steps">
+<div class="step"><h3>Three generations on one street.</h3><p>What began as a single repair bench in 1994 is now the neighbourhood’s favourite shoe store. We still know most customers by name.</p></div>
+<div class="step"><h3>We measure both feet.</h3><p>Length, width and arch. Then we watch you walk, because no two feet match and no two shoes should either.</p></div>
+<div class="step"><h3>Built to be repaired, not replaced.</h3><p>Resoling, restitching and polish on every pair bought here, at cost, for life.</p></div>
+</div></div></div>
+<div class="now"><div class="wrap"><div class="nbox">
+<button class="arr" id="pv" aria-label="Previous pair">‹</button>
+<div><small id="nb"></small><b id="nn"></b></div><div id="cw"></div><div class="pr" id="np"></div>
+<button class="arr" id="nx" aria-label="Next pair">›</button></div></div></div></div></section>
+
+<section class="sc" id="sole"><div class="wrap"><div class="col r rv">
+<h2 data-split>Built from the ground up.</h2>
+<p class="fade">Every pair starts with the sole. Ours is cushioned for all-day walks and grips on wet roads.</p>
+<ul class="spec fade"><li><b>Memory-foam midsole</b><span>Soft heel, springy toe</span></li><li><b>Grip rubber outsole</b><span>Tested on tile and monsoon pavement</span></li><li><b>Stitched, not glued</b><span>Resoled for life at our bench</span></li></ul></div></div></section>
+
+<section class="cat" id="shop"><div class="wrap">
+<h2 data-split class="rv">The collection.</h2><p class="lead" id="lead"></p>
+<div class="filters"><div class="chips" id="chips" role="group" aria-label="Filter by type"></div>
+<select id="fb" aria-label="Filter by brand"></select><select id="fs" aria-label="Sort"><option value="">Featured order</option><option value="asc">Price: low to high</option><option value="desc">Price: high to low</option></select>
+<span id="count"></span></div>
+<div class="grid" id="grid"></div></div></section>
+
+<section class="sc visit" id="visit"><div class="wrap">
+<div class="rv"><h2 data-split>Come try them on.</h2></div>
+<div class="card rv"><dl><dt>Address</dt><dd>12 Market Road, Main Bazaar</dd><dt>Hours</dt><dd>Mon to Sat, 10am to 9pm</dd><dt>Sunday</dt><dd>11am to 7pm</dd><dt>Phone</dt><dd>+91 00000 00000</dd></dl>
+<form id="f"><input required placeholder="Your name" aria-label="Your name"><input required type="tel" placeholder="Phone number" aria-label="Phone number"><button class="btn" type="submit">Reserve my fitting</button><p id="ok" role="status"></p></form></div></div></section>
+</main>
+<footer><span>© 2026 Stride House. All rights reserved.</span><span>Prices include GST.</span></footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+const $=s=>document.querySelector(s),clamp=(x,a,b)=>Math.min(Math.max(x,a),b),sm=(a,b,x)=>{x=clamp((x-a)/(b-a),0,1);return x*x*(3-2*x)};
+const rm=matchMedia("(prefers-reduced-motion:reduce)").matches;
+/* brand, model, type, price, colour, body, panel, heel, accent, laces, midsole */
+const D=[
+["Veloce","Aero Run 01","runner",7499,"Cobalt Blue","#1B2A6B","#F2F4FA","#FF5A1F","#FF5A1F","#F2F4FA","#F2F4FA"],
+["Veloce","Sprint Pro","runner",9999,"Volt Yellow","#D6F23B","#14161C","#14161C","#14161C","#14161C","#EDEDED"],
+["Northpeak","Summit GTX","boot",14999,"Forest Green","#2C5A45","#CFC7AE","#F2A33A","#F2A33A","#161616","#CFC7AE"],
+["Northpeak","Glacier Mid","high",12499,"Slate Grey","#4A5568","#E2E8F0","#ED8936","#ED8936","#1A202C","#E2E8F0"],
+["Kodo","Tokyo Court","sneaker",6299,"Snow White","#F4F4F4","#FFFFFF","#1F7A4D","#1F7A4D","#F4F4F4","#E8E3D3"],
+["Kodo","Kyoto Low","sneaker",4999,"Sand","#D9C7A3","#F1E7D0","#8A6B3D","#8A6B3D","#F1E7D0","#F1E7D0"],
+["Marlowe","Derby Reserve","dress",9999,"Chestnut","#5A3320","#6E4129","#3B2013","#D1A25A","#E9DCC6","#2A1A10"],
+["Marlowe","Oxford Noir","dress",11999,"Jet Black","#0E0F14","#1A1C25","#0E0F14","#B48A4C","#E9DCC6","#0E0F14"],
+["Bruno & Rowe","Penny Loafer","loafer",8499,"Oxblood","#5C1A24","#6E2330","#44121A","#C9A24F","#E9DCC6","#2B0C12"],
+["Bruno & Rowe","Suede Driver","loafer",6999,"Navy Suede","#233A66","#2C4577","#1A2B4D","#E8D9B0","#E8D9B0","#E8D9B0"],
+["Oakline","Chukka","boot",10999,"Tan","#B07A45","#C28F58","#8C5E32","#E9DCC6","#E9DCC6","#E8D3A8"],
+["Oakline","Work Boot 6","boot",13999,"Wheat","#C9A15B","#D9B672","#7A5230","#3B2A1A","#3B2A1A","#2B2018"],
+["Zephyr Lab","Cloud Knit","sneaker",5499,"Lilac","#C9B8F2","#F3EEFF","#7C5CFF","#7C5CFF","#F3EEFF","#F3EEFF"],
+["Zephyr Lab","Neon Pulse","runner",8299,"Magenta","#E5127E","#18121F","#18121F","#2BF0D0","#18121F","#F6F0F7"],
+["Halden","Street Hi","high",7799,"Crimson","#B3122B","#F2F2F2","#14161C","#F2F2F2","#F2F2F2","#F2F2F2"],
+["Stratus","Air Walker","runner",11499,"Sunset Orange","#FF6B2C","#FFE3D1","#22252F","#22252F","#22252F","#FFE3D1"],
+["Mondo","Canvas Low","sneaker",2999,"Ocean","#2D6FA3","#F5F5F0","#F5F5F0","#F5F5F0","#F5F5F0","#F5F5F0"],
+["Pacific Co","Boat Shoe","loafer",5999,"Honey","#C48A3B","#D49A4A","#8D6125","#F1E7D0","#F1E7D0","#F1E7D0"],
+["Casa Verona","Brogue Cap","dress",15999,"Cognac","#8E4B22","#A25C2D","#5E3016","#14110E","#F0E4CE","#2A170B"],
+["Lumen","Trail Blaze","boot",12999,"Graphite","#3A3F4B","#555B6B","#E8F23B","#E8F23B","#14161C","#1B1E26"]
+].map(r=>({br:r[0],n:r[1],t:r[2],p:r[3],cn:r[4],c:{b:r[5],p:r[6],h:r[7],a:r[8],l:r[9],m:r[10]}}));
+const TL={sneaker:"Sneakers",runner:"Runners",high:"High-tops",boot:"Boots",dress:"Dress shoes",loafer:"Loafers"},CW=["Original","Reverse","Accent","Night"];
+const pal=(m,k)=>{const c=m.c;return k==0?c:k==1?{...c,b:c.p,p:c.b}:k==2?{b:c.a,p:c.b,h:c.b,a:c.b,l:c.l,m:c.m}:{b:"#14161c",p:"#23262f",h:"#14161c",a:c.a,l:"#2a2e3a",m:"#14161c"}};
+const fmt=n=>"₹"+n.toLocaleString("en-IN");let sel=0,cw=0,shown=D[0].p;
+$("#lead").textContent=`${D.length} pairs from ${new Set(D.map(d=>d.br)).size} makers. Filter by type or brand, then tap a pair to see it large.`;
+/* split text */
+const w=$("#word");"Stride|House".split("|").forEach((t,k)=>{[...t].forEach((ch,i)=>{const s=document.createElement("span");s.textContent=ch;s.style.setProperty("--i",i+k*6);w.append(s)});if(!k)w.append(document.createElement("br"))});
+document.querySelectorAll("[data-split]").forEach(h=>{h.innerHTML=h.textContent.split(" ").map((t,i)=>`<span class="w"><span style="--i:${i}">${t}</span></span>`).join(" ")});
+/* catalogue + filters */
+let fb="",ft="",fs="",cardEls=[];
+$("#chips").innerHTML=[["","All types"],...Object.entries(TL)].map(([k,v])=>`<button class="chip" data-t="${k}" aria-pressed="${k==""}">${v}</button>`).join("");
+$("#fb").innerHTML='<option value="">All brands</option>'+[...new Set(D.map(d=>d.br))].sort().map(b=>`<option>${b}</option>`).join("");
+function render(){let L=D.map((m,i)=>({m,i})).filter(o=>(!fb||o.m.br==fb)&&(!ft||o.m.t==ft));if(fs)L.sort((a,b)=>fs=="asc"?a.m.p-b.m.p:b.m.p-a.m.p);
+$("#grid").innerHTML=L.length?L.map(({m,i})=>`<a class="pc" href="#about" data-i="${i}" aria-label="${m.br} ${m.n}, ${fmt(m.p)}"><div class="slot"></div><small>${m.br} · ${TL[m.t]}</small><h3>${m.n}</h3><div class="row"><span><i style="background:${m.c.b}"></i>${m.cn}</span><b>${fmt(m.p)}</b></div></a>`).join(""):'<p class="empty">No pairs match these filters. Try another type or brand.</p>';
+cardEls=[...$("#grid").querySelectorAll(".pc")].map(e=>({e,s:e.querySelector(".slot"),i:+e.dataset.i}));$("#count").textContent=L.length+(L.length==1?" pair":" pairs")}
+$("#chips").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;ft=b.dataset.t;$("#chips").querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",x==b));render()});
+$("#fb").addEventListener("change",e=>{fb=e.target.value;render()});$("#fs").addEventListener("change",e=>{fs=e.target.value;render()});render();
+/* featured pair UI */
+let onSel=()=>{};
+function ui(){const m=D[sel];$("#nb").textContent=m.br+" · "+m.cn;$("#nn").textContent=m.n;
+$("#cw").innerHTML=CW.map((n,k)=>`<button aria-label="${n} colourway" title="${n}" aria-pressed="${k==cw}" style="background:${pal(m,k).b}"></button>`).join("");$("#np").textContent=fmt(Math.round(shown))}
+function select(i){sel=i;cw=0;ui();onSel(true)}
+$("#grid").addEventListener("click",e=>{const a=e.target.closest(".pc");if(a)select(+a.dataset.i)});
+$("#pv").onclick=()=>select((sel+D.length-1)%D.length);$("#nx").onclick=()=>select((sel+1)%D.length);
+$("#cw").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;cw=[...$("#cw").querySelectorAll("button")].indexOf(b);ui();onSel(false)});ui();
+/* reveal */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("on");io.unobserve(e.target)}}),{threshold:.3});
+document.querySelectorAll(".rv").forEach(e=>io.observe(e));
+$("#f").addEventListener("submit",e=>{e.preventDefault();$("#ok").textContent="Thank you. We will call to confirm your fitting.";e.target.reset()});
+/* pointer */
+let mx=0,my=0,smx=0,smy=0,cx=innerWidth/2,cy=innerHeight/2,tx=cx,ty=cy;const cur=$("#cur");
+addEventListener("pointermove",e=>{tx=e.clientX;ty=e.clientY;mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5},{passive:true});
+document.addEventListener("mouseover",e=>cur.classList.toggle("h",!!e.target.closest("a,button,select")));
+document.querySelectorAll(".btn").forEach(b=>{b.addEventListener("mousemove",e=>{const r=b.getBoundingClientRect();b.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.3}px,${(e.clientY-r.top-r.height/2)*.45}px)`});b.addEventListener("mouseleave",()=>b.style.transform="")});
+const steps=[...document.querySelectorAll(".step")];let ap=0;
+function prog(){const h=document.documentElement.scrollHeight-innerHeight;$("#bar").style.width=scrollY/h*100+"%";w.style.transform=`translateY(${-scrollY*.3}px) translate(${smx*-70}px,${smy*-40}px)`;w.style.opacity=clamp(1-scrollY/(innerHeight*.9),0,1);
+const r=$("#about").getBoundingClientRect();ap=clamp(-r.top/(r.height-innerHeight),0,1);
+steps.forEach((s,i)=>{const c=(i+.5)/steps.length,d=ap-c;let o=1-sm(.12,.19,Math.abs(d));if(i==0&&d<0)o=1;if(i==steps.length-1&&d>0)o=1;s.style.opacity=o;s.style.transform=`translateY(${clamp(d*140,-30,30)}px)`;s.style.pointerEvents=o>.5?"auto":"none"})}
+addEventListener("scroll",prog,{passive:true});
+/* ===== 3D ===== */
+let ok=true,R3;try{R3=new THREE.WebGLRenderer({canvas:$("#gl"),antialias:true,alpha:true})}catch(e){ok=false}
+let go=false,t0=0;function start(){document.body.classList.add("go");go=true;t0=performance.now()}
+if(!ok){document.body.classList.add("nogl");addEventListener("load",start);(function f(){requestAnimationFrame(f);prog()})()}else{
+R3.setPixelRatio(Math.min(devicePixelRatio,2));R3.toneMapping=THREE.ACESFilmicToneMapping;R3.toneMappingExposure=1.15;
+const pm=new THREE.PMREMGenerator(R3),es=new THREE.Scene();
+es.add(new THREE.Mesh(new THREE.BoxGeometry(40,40,40),new THREE.MeshBasicMaterial({color:0x0f1220,side:THREE.BackSide})));
+const pan=(c,i,x,y,z,a,b)=>{const m=new THREE.Mesh(new THREE.PlaneGeometry(a,b),new THREE.MeshBasicMaterial({color:new THREE.Color(c).multiplyScalar(i),side:THREE.DoubleSide}));m.position.set(x,y,z);m.lookAt(0,0,0);es.add(m)};
+pan(0xffffff,7,0,14,5,16,7);pan(0xff7a3a,9,-14,3,-5,4,12);pan(0x6a86ff,7,14,2,-7,4,12);pan(0xffffff,3,0,-2,14,18,4);pan(0xffffff,4,10,6,8,5,8);
+const env=pm.fromScene(es).texture;
+const lit=(s)=>{s.environment=env;s.add(new THREE.HemisphereLight(0x9fb4ff,0x1a0d08,.35));const k=new THREE.DirectionalLight(0xfff0e0,2.4);k.position.set(3,6,5);s.add(k);
+const r=new THREE.PointLight(0xff5a1f,40,30);r.position.set(-5,2,-4);s.add(r);const c=new THREE.PointLight(0x4c6bff,40,30);c.position.set(5,1,-5);s.add(c);return s};
+const sc=lit(new THREE.Scene()),cam=new THREE.PerspectiveCamera(32,1,.1,100),ml=new THREE.PointLight(0xffffff,18,24);sc.add(ml);
+const cs=lit(new THREE.Scene()),cam2=new THREE.PerspectiveCamera(30,1.3,.1,50);cam2.position.set(0,1.2,7.8);cam2.lookAt(0,0,0);
+const nc=document.createElement("canvas");nc.width=nc.height=128;const ng=nc.getContext("2d"),id=ng.createImageData(128,128);
+for(let i=0;i<id.data.length;i+=4){const v=120+Math.random()*100;id.data[i]=id.data[i+1]=id.data[i+2]=v;id.data[i+3]=255}ng.putImageData(id,0,0);
+const grain=new THREE.CanvasTexture(nc);grain.wrapS=grain.wrapT=THREE.RepeatWrapping;
+const cv=document.createElement("canvas");cv.width=cv.height=128;const g=cv.getContext("2d"),gr=g.createRadialGradient(64,64,0,64,64,64);gr.addColorStop(0,"rgba(0,0,0,.85)");gr.addColorStop(1,"rgba(0,0,0,0)");g.fillStyle=gr;g.fillRect(0,0,128,128);
+const shTex=new THREE.CanvasTexture(cv),outMat=new THREE.MeshStandardMaterial({color:0x0b0d14,roughness:.92});
+const TY={
+sneaker:{kh:[[-1,.86],[-.65,.98],[-.15,.72],[.3,.52],[.7,.43],[1,.38]],ws:1,pf:3.5,cu:-.55,dip:.24,mid:.26,out:.08,lc:[-.18,-.04,.1,.24,.38,.52],str:1,tg:1,cap:1,pen:0,rg:.5,cc:.45,bs:.5},
+runner:{kh:[[-1,.8],[-.65,.88],[-.15,.64],[.3,.47],[.7,.38],[1,.33]],ws:.94,pf:3.2,cu:-.55,dip:.26,mid:.38,out:.07,lc:[-.14,0,.14,.28,.42],str:1,tg:1,cap:0,pen:0,rg:.45,cc:.5,bs:.6},
+high:{kh:[[-1,1.28],[-.7,1.5],[-.2,1.1],[.3,.58],[.7,.44],[1,.39]],ws:1,pf:3.5,cu:-.78,dip:.14,mid:.28,out:.08,lc:[-.5,-.36,-.22,-.08,.06,.2,.34,.48],str:0,tg:1,cap:1,pen:0,rg:.5,cc:.45,bs:.5},
+boot:{kh:[[-1,1.1],[-.7,1.28],[-.2,.92],[.3,.55],[.7,.45],[1,.41]],ws:1.02,pf:3.2,cu:-.75,dip:.12,mid:.24,out:.17,lc:[-.4,-.26,-.12,.02,.16,.3],str:0,tg:1,cap:1,pen:0,rg:.6,cc:.3,bs:.8},
+dress:{kh:[[-1,.74],[-.65,.78],[-.15,.55],[.3,.4],[.7,.3],[1,.22]],ws:.9,pf:2.3,cu:-.55,dip:.2,mid:.1,out:.07,lc:[-.2,-.06,.08,.22],str:0,tg:0,cap:1,pen:0,rg:.26,cc:1,bs:.12},
+loafer:{kh:[[-1,.72],[-.65,.74],[-.15,.5],[.3,.4],[.7,.3],[1,.23]],ws:.9,pf:2.6,cu:-.35,dip:.34,mid:.1,out:.07,lc:[],str:0,tg:0,cap:1,pen:1,rg:.3,cc:.9,bs:.1}};
+let T=TY.sneaker;
+const Rr=u=>{const p=u>0?T.pf:3.5;return Math.pow(Math.max(1-Math.pow(Math.abs(u),p),0),1/p)};
+const H=u=>{const k=T.kh;for(let i=0;i<k.length-1;i++){const a=k[i],b=k[i+1];if(u<=b[0]){const t=(u-a[0])/(b[0]-a[0]);return a[1]+(b[1]-a[1])*t*t*(3-2*t)}}return k[k.length-1][1]};
+const Wd=u=>(.55+.07*u-.06*Math.exp(-Math.pow((u+.15)/.3,2)))*T.ws,G=u=>Math.exp(-Math.pow((u-T.cu)/.2,2));
+function P(u,f,o=1){u=clamp(u,-.999,.999);const r=Rr(u),c=Math.max(Math.cos(f),0),d=1-T.dip*G(u)*Math.pow(c,6);return new THREE.Vector3(u*1.55,H(u)*Math.pow(r,.35)*Math.pow(c,.75)*d*o+(o>1?.02:0),Wd(u)*r*Math.sin(f)*(o>1?1.03:1))}
+const dk=new THREE.Color("#04050a"),tmp=new THREE.Color();
+function makeShoe(m,k){T=TY[m.t];const pc=pal(m,k),C={};for(const q in pc)C[q]=new THREE.Color(pc[q]);
+const N=90,MM=44,pos=[],uv=[],col=[],idx=[],s0=(T.lc.length?T.lc[0]:-.2)-.14;
+for(let i=0;i<=N;i++){const u=-Math.cos(Math.PI*i/N);for(let j=0;j<=MM;j++){const f=-Math.PI/2+Math.PI*j/MM,v=P(u,f),af=Math.abs(f);pos.push(v.x,v.y,v.z);uv.push(i/N*10,j/MM*5);
+const wP=Math.max(sm(s0,s0+.12,u)*(1-sm(.5,.62,u))*(1-sm(.45,.62,af)),sm(.62,.72,u)*(1-sm(1.1,1.4,af))),wH=(1-sm(-.86,-.68,u))*(1-sm(1.2,1.45,af)),wO=(1-sm(.2,.29,Math.abs(u-T.cu)))*(1-sm(.46,.58,af));
+tmp.copy(C.b).lerp(C.p,wP).lerp(C.h,wH).lerp(dk,wO);col.push(tmp.r,tmp.g,tmp.b)}}
+for(let i=0;i<N;i++)for(let j=0;j<MM;j++){const a=i*(MM+1)+j,b=a+MM+1;idx.push(a,b,a+1,a+1,b,b+1)}
+const geo=new THREE.BufferGeometry();geo.setAttribute("position",new THREE.Float32BufferAttribute(pos,3));geo.setAttribute("uv",new THREE.Float32BufferAttribute(uv,2));geo.setAttribute("color",new THREE.Float32BufferAttribute(col,3));geo.setIndex(idx);geo.computeVertexNormals();
+const mA=new THREE.MeshStandardMaterial({color:C.a,roughness:.4,metalness:.1}),mL=new THREE.MeshStandardMaterial({color:C.l,roughness:.75}),mM=new THREE.MeshStandardMaterial({color:C.m,roughness:.55,metalness:.02});
+const up=new THREE.Group();up.position.y=T.mid-.04;
+up.add(new THREE.Mesh(geo,new THREE.MeshPhysicalMaterial({vertexColors:true,roughness:T.rg,metalness:.04,clearcoat:T.cc,clearcoatRoughness:.35,side:THREE.DoubleSide,bumpMap:grain,bumpScale:T.bs})));
+const tube=(pts,r,mat,closed)=>up.add(new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts,closed),closed?48:32,r,10,closed),mat));
+const arc=(u,a,b,o=1.05)=>{const p=[];for(let q=0;q<=12;q++)p.push(P(u,a+(b-a)*q/12,o));return p};
+T.lc.forEach(u=>tube(arc(u,-1.05,1.05),.03,mL));
+if(T.str)[1,-1].forEach(s=>{const p=[];for(let u=-.5;u<=.62;u+=.08)p.push(P(u,s*(1-.3*(u+.5)),1.03));tube(p,.05,mA)});
+if(T.cap)tube(arc(T.pen?.3:.56,-1.2,1.2,1.02),.014,mL);
+if(T.pen)tube(arc(.1,-.85,.85,1.06),.045,mA);
+const hl=Math.min(.27,.99+T.cu),rp=[];for(let q=0;q<32;q++){const t=q/32*Math.PI*2;rp.push(P(T.cu+hl*Math.cos(t),.62*Math.sin(t),1.01))}tube(rp,.075,T.pen||!T.lc.length?mM:mL,true);
+if(T.tg){const p=P(T.lc[0]-.1,0,1.05),tg=new THREE.Mesh(new THREE.BoxGeometry(.34,.05,.34*T.ws),mL);tg.position.set(p.x-.05,p.y+.08,0);tg.rotation.z=-.5;up.add(tg)}
+const sh=new THREE.Shape(),tp=[],bt=[];for(let i=0;i<=60;i++){const u=-Math.cos(Math.PI*i/60),f=Wd(u)*Rr(u)*1.12+.05;tp.push([u*1.55*1.06,f]);bt.push([u*1.55*1.06,-f])}
+sh.moveTo(tp[0][0],tp[0][1]);tp.forEach(p=>sh.lineTo(p[0],p[1]));bt.reverse().forEach(p=>sh.lineTo(p[0],p[1]));
+const mid=new THREE.Mesh(new THREE.ExtrudeGeometry(sh,{depth:T.mid,bevelEnabled:true,bevelThickness:.05,bevelSize:.05,bevelSegments:4}).rotateX(-Math.PI/2),mM);
+const out=new THREE.Mesh(new THREE.ExtrudeGeometry(sh,{depth:T.out,bevelEnabled:true,bevelThickness:.02,bevelSize:.02,bevelSegments:2}).rotateX(-Math.PI/2),outMat);out.position.y=-T.out-.04;
+const top=T.mid-.04+Math.max(...T.kh.map(q=>q[1])),bot=-(T.out+.06),ctr=(top+bot)/2;
+const inner=new THREE.Group(),spin=new THREE.Group(),hold=new THREE.Group();inner.position.y=-ctr;inner.add(up,mid,out);spin.add(inner);spin.rotation.order="YXZ";
+const shd=new THREE.Mesh(new THREE.PlaneGeometry(1,1),new THREE.MeshBasicMaterial({map:shTex,transparent:true,depthWrite:false}));shd.rotation.x=-Math.PI/2;shd.scale.set(4.2,2.3,1);shd.position.y=bot-ctr-.02;
+hold.add(shd,spin);hold.userData={spin,shd,ry:-.55,rx:.1};return hold}
+const dispose=h=>h.traverse(o=>o.geometry&&o.geometry.dispose());
+/* main showroom shoe */
+const root=new THREE.Group();sc.add(root);let main=null,kick=0;
+function setMain(){const old=main;main=makeShoe(D[sel],cw);root.add(main);if(old){root.remove(old);dispose(old)}}
+onSel=sw=>{setMain();if(sw)kick=1.6};setMain();
+/* catalogue shoes (built when first seen) */
+const cache={};
+function cardShoe(i){if(!cache[i]){const h=makeShoe(D[i],0);h.visible=false;h.userData.ry=-.55+i*.7;cs.add(h);cache[i]=h}return cache[i]}
+/* keyframes: px,py,rx,ry,rz,s,cz */
+const K=[[0,-.1,.08,-.55,0,1,8.4],[.9,0,.18,-.55,0,1.5,7.8],[.9,0,.18,-.55,0,1.5,7.8],[1.8,-.1,-.5,-1.0,.08,1.15,7.4],[0,-.4,.2,.6,0,.01,8.4],[0,-.4,.2,.6,0,.01,8.4],[0,1.1,.25,2.4,0,.55,9.2]];
+let C=[];function calc(){const v=innerHeight,E=s=>{const e=$(s),r=e.getBoundingClientRect();return{t:r.top+scrollY,h:e.offsetHeight}};
+const h=E(".hero"),a=E("#about"),c=E("#sole"),k=E("#shop"),vi=E("#visit");
+C=[h.t+h.h/2,a.t+v/2,a.t+a.h-v/2,c.t+c.h/2,k.t-v*.45,k.t+k.h-v*.5,vi.t+vi.h/2];for(let i=1;i<C.length;i++)C[i]=Math.max(C[i],C[i-1]+1)}
+function targ(){const y=scrollY+innerHeight/2;let i=0;while(i<C.length-2&&y>C[i+1])i++;const t=sm(0,1,(y-C[i])/(C[i+1]-C[i])),a=K[i],b=K[i+1];const o=a.map((v,n)=>v+(b[n]-v)*t);
+if(innerWidth<900){o[0]=0;o[1]+=.95;o[5]*=.78;o[6]+=1.6}return o}
+const st=K[0].slice();
+function size(){R3.setSize(innerWidth,innerHeight,false);cam.aspect=innerWidth/innerHeight;cam.updateProjectionMatrix();calc()}
+addEventListener("resize",size);size();new ResizeObserver(calc).observe(document.body);
+addEventListener("load",()=>{calc();let n=0;const iv=setInterval(()=>{n+=Math.random()*18+8;if(n>=100){clearInterval(iv);$("#pc").textContent="100%";setTimeout(start,350)}else $("#pc").textContent=Math.round(n)+"%"},120)});
+let last=performance.now();const t00=last;let spinS=0;
+(function loop(now){requestAnimationFrame(loop);const dt=Math.min((now-last)/1000,.05);last=now;const t=(now-t00)/1000;
+const km=1-Math.exp(-dt*22),ks=1-Math.exp(-dt*5),kc=1-Math.exp(-dt*32);
+smx+=(mx-smx)*km;smy+=(my-smy)*km;cx+=(tx-cx)*kc;cy+=(ty-cy)*kc;cur.style.transform=`translate(${cx}px,${cy}px)`;
+const T2=targ();for(let i=0;i<7;i++)st[i]+=(T2[i]-st[i])*ks;
+spinS+=(ap*Math.PI*2.5-spinS)*ks;kick*=Math.exp(-dt*3.5);
+let e=0;if(go){const k=clamp((now-t0)/2800,0,1);e=1-Math.pow(1-k,4)}
+const sp=rm?0:1,sc2=st[5]*(.35+.65*e)*(1-.06*Math.min(kick,1));
+root.position.set(st[0]+smx*.55,st[1]+Math.sin(t*1.1)*.04*sp-(1-e)*.9-smy*.25,0);root.scale.setScalar(sc2);
+main.userData.spin.rotation.set(st[2]+smy*.7,st[3]+spinS+smx*1.5+Math.sin(t*.45)*.08*sp-(1-e)*3.4+kick,st[4]-smx*.12);
+main.userData.shd.material.opacity=clamp(.9-Math.abs(st[2]+smy*.7)*1.1,0,.9)*e;
+cam.position.set(smx*1.4,1.5-smy*.9,st[6]);cam.lookAt(0,0,0);ml.position.set(smx*12,-smy*8+2,5);
+shown+=(D[sel].p-shown)*(1-Math.exp(-dt*9));$("#np").textContent=fmt(Math.round(shown));
+prog();
+R3.setScissorTest(false);R3.setViewport(0,0,innerWidth,innerHeight);R3.render(sc,cam);
+/* catalogue cards: one shoe rendered into each visible slot */
+const Hh=innerHeight;R3.setScissorTest(true);
+for(const c of cardEls){const r=c.s.getBoundingClientRect();if(r.bottom<0||r.top>Hh||r.width<2)continue;
+const h=cardShoe(c.i),d=h.userData,hov=tx>=r.left&&tx<=r.right&&ty>=r.top&&ty<=r.bottom;
+if(hov){d.ry+=((-.55+((tx-r.left)/r.width-.5)*6.5)-d.ry)*km;d.rx+=((.12+((ty-r.top)/r.height-.5)*.7)-d.rx)*km}else{d.ry+=dt*.5*sp;d.rx+=(.1-d.rx)*ks}
+d.spin.rotation.set(d.rx,d.ry,0);d.shd.material.opacity=.85;h.scale.setScalar(hov?1.08:1);
+cs.children.forEach(o=>{if(o.userData&&o.userData.spin)o.visible=o===h});
+cam2.aspect=r.width/r.height;cam2.updateProjectionMatrix();
+R3.setViewport(r.left,Hh-r.bottom,r.width,r.height);R3.setScissor(r.left,Hh-r.bottom,r.width,r.height);R3.render(cs,cam2)}
+R3.setScissorTest(false)})(last)}
+</script>
+</body>
+</html>
